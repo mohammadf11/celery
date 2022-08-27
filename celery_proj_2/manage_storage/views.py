@@ -19,8 +19,8 @@ class Storage(FormView):
         object_name_for_delete = form.cleaned_data.get('object_name_delete')
         object_name_download = form.cleaned_data.get('object_name_download')
         object_name_for_upload = path.split('/')[-1]
-        # upload_object_task.delay(path, object_name_for_upload)
-        # delete_object_task.delay(object_name_for_delete)
+        upload_object_task.delay(path, object_name_for_upload)
+        delete_object_task.delay(object_name_for_delete)
         download_object_task.delay(object_name_download)
 
         return super().form_valid(form)
